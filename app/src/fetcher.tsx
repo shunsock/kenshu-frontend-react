@@ -20,3 +20,25 @@ export const createTask = async () => {
     throw error
   }
 };
+
+export const updateTask = async (
+  {id, newTitle, finishedAt}: {id: string, newTitle: string, finishedAt: string}
+) => {
+  const headers = {
+    'Content-Type': 'application/json;charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    "title": newTitle,
+    "finishedAt": finishedAt
+  }
+  console.log(`http://127.0.0.1:8000/api/tasks/${id}`)
+  console.log(headers)
+  try {
+    await axios.patch(
+      `http://127.0.0.1:8000/api/tasks/${id}`,
+      headers
+    )
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+};

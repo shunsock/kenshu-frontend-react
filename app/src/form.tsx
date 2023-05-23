@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { createTask } from "./fetcher.tsx";
-import { SlNote } from "react-icons/sl";
 
 export const Form = () => {
   const [inputText, setInputText] = useState<string>("");
