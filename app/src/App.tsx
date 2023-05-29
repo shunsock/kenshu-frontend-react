@@ -20,11 +20,11 @@ const TodoApp = () => {
     console.log(error)
     return <div>Error fetching tasks</div>;
   };
-  const title: string = "React Task Manager";
-  const tasksSubTitle: string = tasks.length === 0 ? "No Tasks" : "Tasks";
-  const formSubtitle: string = "Add New Task";
-  const numOfTasks: number = tasks.length;
-  const mainText: string = "You have " + numOfTasks.toString() + " tasks! If Click the task to edit when you finish the task";
+  const title = "React Task Manager";
+  const tasksSubTitle = tasks.length === 0 ? "No Tasks" : "Tasks";
+  const formSubtitle = "Add New Task";
+  const numOfTasks = tasks.length;
+  const mainText = "You have " + numOfTasks.toString() + " tasks! If Click the task to edit when you finish the task";
   const formText: string = "If you get some task, Please enter the task title and click the button or press enter key";
   return (
     <div className="px-[10%] py-[5%] bg-midnight">
