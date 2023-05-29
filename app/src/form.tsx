@@ -23,7 +23,7 @@ export const Form = () => {
         placeholder="enter your task"
         value={inputText}
         className="border-2 px-[3%] py-[1%] text-lg w-[500px] my-[1%]  border-comment rounded-md"
-        onChange={() => {handleInput}}
+        onChange={(e) => {handleInput(e)}}
       />
       <button
         type="submit"
