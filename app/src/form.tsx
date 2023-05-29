@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createTask } from "./fetcher.tsx";
 import { SlNote } from "react-icons/sl";
+import {getAllData} from "./fetcher.tsx";
 
 export const Form = () => {
   const [inputText, setInputText] = useState<string>("");
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputText(e.target.value);
   }
-
   const mutation = useMutation({
-    mutationFn: createTask
+    mutationFn: createTask,
   });
   const handleSubmit = (): void => {
     mutation.mutate();
+    const queryClient = useQueryClient()
+    queryClient.refetchQueries([''])
   }
 
   return (

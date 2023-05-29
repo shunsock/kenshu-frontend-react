@@ -26,7 +26,7 @@ const TodoApp = () => {
   const formSubtitle = "Add New Task";
   const numOfTasks = tasks.length;
   const mainText = "You have " + numOfTasks.toString() + " tasks! If Click the task to edit when you finish the task";
-  const formText: string = "If you get some task, Please enter the task title and click the button or press enter key";
+  const formText = "If you get some task, Please enter the task title and click the button or press enter key";
   return (
     <div className="px-[10%] py-[5%] bg-midnight">
       <Title text={title} numOfTasks={numOfTasks} />
@@ -35,7 +35,7 @@ const TodoApp = () => {
           text={tasksSubTitle}
         />
         <p className="px-[3%] py-[1%] text-red text-2xl font-bold">{"Loaded Tasks: "}{numOfTasks.toString()}</p>
-        <Text text={mainText} />
+        <Text children={mainText} />
         <ul className="p-[3%]">
           {tasks.map((task, key) => {
             return (
@@ -53,7 +53,7 @@ const TodoApp = () => {
           })}
         </ul>
         <SubTitle text={formSubtitle} />
-        <Text text={formText} />
+        <Text children={formText} />
         <Form />
         <Footer />
       </div>

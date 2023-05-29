@@ -9,7 +9,11 @@ export const getAllData = async () => {
 };
 
 export const createTask = async () => {
-  await client.post(
-    'http://127.0.0.1:8000/api/tasks',
-  )
+    await client.post(
+      'http://127.0.0.1:8000/api/tasks',
+      {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    )
 };
