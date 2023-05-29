@@ -39,10 +39,10 @@ const TodoApp = () => {
           {tasks.map((task, key) => {
             return (
               <li key={key} className="mb-[3%] p-[3%] bg-dark-gray rounded-lg">
-                <h3 className="text-xl">
+                <h2 className="text-xl">
                   <FaPencilAlt className="inline text-orange" />
                   <span className="text-dark ml-[3%]">{task.title}</span>
-                </h3>
+                </h2>
                 <p className="text-lg">
                   <FaCalendar className="inline text-orange" />
                   <span className="ml-[3%]">{task.createdAt}</span>
@@ -71,10 +71,10 @@ const Title = ({ text, numOfTasks }: { text: string, numOfTasks: number }) => {
 
 const SubTitle = ({ text }: { text: string }) => {
   return (
-    <h3 className="font-title font-bold  text-light-gray block text-3xl py-[2%] pl-[3%]">
+    <h2 className="font-title font-bold  text-light-gray block text-3xl py-[2%] pl-[3%]">
       <MdWork className="inline-block align-middle" />
       <span className="ml-[3%] inline-block align-middle">{text}</span>
-    </h3>
+    </h2>
   )
 }
 
