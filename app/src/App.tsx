@@ -1,5 +1,3 @@
-import { QueryClientProvider, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import {
   FaReact,
   FaPencilAlt,
@@ -9,14 +7,12 @@ import {
   MdWork
 } from "react-icons/md";
 import { Task } from "./types/my-type.tsx";
-import { queryClientGetAllData } from "./query-client.tsx";
 import { Form } from "./form.tsx";
-
+import { QueryClientProvider, useQuery, QueryClient } from '@tanstack/react-query';
+import { getAllData } from './fetcher.tsx';
 
 const TodoApp = () => {
-  // API call
-  const { data: tasks, isLoading, isError, error } = useQuery({ queryKey: [] });
-
+  const { data: tasks, isLoading, isError, error } = useQuery({ queryKey: ["tasks"], queryFn: getAllData });
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -24,22 +20,10 @@ const TodoApp = () => {
     console.log(error)
     return <div>Error fetching tasks</div>;
   };
-  // Assertion for type
-  const taskTyped: Task[] = tasks["tasks"].map((task) => {
-    const regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
-    const taskYYYYmmdd: string = task.createdAt.match(regexp);
-    console.log(taskYYYYmmdd)
-    return {
-      id: task.id,
-      title: task.title,
-      createdAt: taskYYYYmmdd,
-      finishedAt: task.finishedAt
-    }
-  });
   const title: string = "React Task Manager";
-  const tasksSubTitle: string = taskTyped.length === 0 ? "No Tasks" : "Tasks";
+  const tasksSubTitle: string = tasks.length === 0 ? "No Tasks" : "Tasks";
   const formSubtitle: string = "Add New Task";
-  const numOfTasks: number = taskTyped.length;
+  const numOfTasks: number = tasks.length;
   const mainText: string = "You have " + numOfTasks.toString() + " tasks! If Click the task to edit when you finish the task";
   const formText: string = "If you get some task, Please enter the task title and click the button or press enter key";
   return (
@@ -52,7 +36,7 @@ const TodoApp = () => {
         <p className="px-[3%] py-[1%] text-red text-2xl font-bold">{"Loaded Tasks: "}{numOfTasks.toString()}</p>
         <Text text={mainText} />
         <ul className="p-[3%]">
-          {taskTyped.map((task, key) => {
+          {tasks.map((task, key) => {
             return (
               <li key={key} className="mb-[3%] p-[3%] bg-dark-gray rounded-lg">
                 <h3 className="text-xl">
@@ -110,6 +94,7 @@ const Footer = () => {
     </div>
   )
 };
+const queryClientGetAllData = new QueryClient();
 
 export const App = () => (
   <QueryClientProvider client={queryClientGetAllData}>
