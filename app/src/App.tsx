@@ -10,6 +10,7 @@ import { Task } from "./types/my-type.tsx";
 import { Form } from "./form.tsx";
 import { QueryClientProvider, useQuery, QueryClient } from '@tanstack/react-query';
 import { getAllData } from './fetcher.tsx';
+import { PropsWithChildren } from 'react';
 
 const TodoApp = () => {
   const { data: tasks, isLoading, isError, error } = useQuery({ queryKey: ["tasks"], queryFn: getAllData });
@@ -78,9 +79,9 @@ const SubTitle = ({ text }: { text: string }) => {
   )
 }
 
-const Text = ({ text }: { text: string }) => {
+const Text = ({ children }: PropsWithChildren) => {
   return (
-    <p className="px-[3%] text-comment text-lg">{text}</p>
+    <p className="px-[3%] text-comment text-lg">{children}</p>
   )
 };
 
