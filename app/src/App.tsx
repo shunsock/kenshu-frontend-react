@@ -1,6 +1,5 @@
-import { QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { QueryClientProvider, useQuery, QueryClient } from '@tanstack/react-query';
 import { getAllData } from './fetcher.tsx';
-import { queryClientGetAllData } from './query-client.tsx';
 
 const TodoApp = () => {
   const { data: tasks, isLoading, isError, error } = useQuery({ queryKey: ["tasks"], queryFn: getAllData });
@@ -27,6 +26,8 @@ const TodoApp = () => {
     </div>
   );
 };
+
+const queryClientGetAllData = new QueryClient();
 
 export const App = () => (
   <QueryClientProvider client={queryClientGetAllData}>
