@@ -37,3 +37,12 @@ export const Form = () => {
   )
 };
 
+
+const testComponent: React.FC = (hoge: string) => {
+  return (
+    <div>
+      <Form />
+    </div>
+  )
+}
+
